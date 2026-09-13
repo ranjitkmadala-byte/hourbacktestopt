@@ -1,17 +1,11 @@
-# AVWAP 53 — Spot +0.5% target-hit backfill
+Backfills spot target-before-stop for all 53 AVWAP entries.
+Target: +0.5% from spot entry.
+Stop: -0.5% from spot entry.
+Uses Upstox 1-minute spot candles from entry to 15:30.
 
-For the 53 historical AVWAP entries:
-- fetches 1-minute SPOT candles from Upstox
-- calculates target = entry * 1.005
-- finds first 1-minute candle whose HIGH reaches target
-- stores target-hit bar start/end and conservative target_hit_time = bar end
-- stores minutes to target
-- writes results to Neon
+Important: if both target and stop occur inside the same 1-minute candle, the row is marked
+AMBIGUOUS_SAME_1M_BAR rather than assuming an order.
 
-Output:
-- public.avwap53_spot_target_hits
-- public.avwap53_spot_target_hits_summary
-
-Required Railway variables:
-- NEON_DATABASE_URL
-- UPSTOX_TOKEN
+Writes:
+- public.avwap53_spot_target_stop
+- public.avwap53_spot_target_stop_summary
