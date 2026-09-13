@@ -1,1 +1,1 @@
-worker: python backfill_avwap53_upstox_atm.py
+worker: python backfill_avwap53_spot_target_hits.py
